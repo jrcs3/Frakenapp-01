@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Phone Home App</title>
+    <!--Without the below script block, jQuey will not get executed in electron window -->
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!--Without the below script block, jQuery will not get executed in electron window -->
+    <script>
+        if (window.module) {
+            module = window.module;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Phone Home App</h1>
+    <script>
+        $(document).ready(function () {
+            const ipcRenderer = require('electron').ipcRenderer;
+
+            ipcRenderer.on('received-data', function (evt, message) {
+                $("#received-data-content").append(message + "<br \>");
+            });
+
+            $("#phoneHome").click(function (event) {
+                ipcRenderer.send('phoneHome');
+            });
+        });
+    </script>
+    <br />
+    <input type="button" id="phoneHome" value="Phone Home" />
+    <br />
+    <h2>Incoming Calls</h2>
+    <div id="received-data-content"></div>
+</body>
+
+</html>

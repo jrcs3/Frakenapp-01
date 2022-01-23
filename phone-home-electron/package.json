@@ -1,0 +1,23 @@
+{
+  "name": "phone-home-electron",
+  "version": "0.0.1",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrcs3/Resume-Builder-Experiment-01.git"
+  },
+  "author": "Jack Stephens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jrcs3/Resume-Builder-Experiment-01/issues"
+  },
+  "homepage": "https://github.com/jrcs3/Resume-Builder-Experiment-01#readme",
+  "devDependencies": {
+    "electron": "^16.0.7"
+  }
+}
