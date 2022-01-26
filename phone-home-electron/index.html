@@ -13,8 +13,7 @@
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-        crossorigin="anonymous"></script>
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!--Without the below script block, jQuery will not 
         get executed in electron window -->
     <script>
@@ -28,12 +27,16 @@
     <h1>Phone Home App</h1>
     <script>
         $(document).ready(function () {
+            // Inter Process Communication module for the renderer process
             const ipcRenderer = require('electron').ipcRenderer;
 
+            // Recieves data from the main process
             ipcRenderer.on('received-data', function (evt, message) {
                 $("#received-data-content").append(message + "<br \>");
             });
 
+            // Sends data back to the main process
+            // when the phoneHome button is clicked
             $("#phoneHome").click(function (event) {
                 ipcRenderer.send('phoneHome');
             });

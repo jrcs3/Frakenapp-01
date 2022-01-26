@@ -1,19 +1,18 @@
-// Modules to control application life and create native browser window
-// See: https://gm-surendra.medium.com/electron-app-and-classic-windows-app-integration-942d0f8c59c2
-// See: https://www.codeproject.com/Articles/488668/Csharp-TCP-Server
-
-const HOST = 'localhost'; //# ip address for the socket; TCP Server Simulator should be on this computer
-const PORT = 3001; //# port number for the socket; TCP Server Simulator uses 3001 by default
+// # ip address for the socket
+// TCP Server Simulator should be on this computer
+const HOST = 'localhost'; 
+// # port number for the socket
+// TCP Server Simulator uses 3001 by default
+const PORT = 3001; 
 
 const {
     app,
-    BrowserWindow
+    BrowserWindow,
+    ipcMain         // Inter Process Communication module for the main process
 } = require('electron');
+const net = require('net');
 
 const path = require('path');
-const net = require('net');
-const electron = require('electron');
-const ipcMain = electron.ipcMain;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -41,6 +40,7 @@ function createWindow() {
     });
 };
 
+// 1. Create a connection with home
 const client = new net.Socket();
 client.connect(PORT, HOST, function () {
     console.log('CONNECTED TO: ' + HOST + ':' + PORT);
@@ -49,8 +49,7 @@ client.connect(PORT, HOST, function () {
     client.write('Line Opened');
 });
 
-// Add a 'data' event handler for the client socket
-// data is what the server sent to this socket
+// 2. Listen for data from home and send it to mainWindow (the renderer process),
 client.on('data', function (data) {
     console.log('DATA: ' + data);
     mainWindow.webContents.send('received-data', '' + data);
@@ -61,7 +60,7 @@ client.on('data', function (data) {
     }
 });
 
-// Add a 'close' event handler for the client socket
+// 3. relay data from mainWindow (the renderer process) to home.
 ipcMain.on('phoneHome', function (event) {
     client.write('phoneHome');
 });
