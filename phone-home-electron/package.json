@@ -19,5 +19,8 @@
   "homepage": "https://github.com/jrcs3/Resume-Builder-Experiment-01#readme",
   "devDependencies": {
     "electron": "^16.0.7"
+  },
+  "dependencies": {
+    "dependencies": "0.0.1"
   }
 }
