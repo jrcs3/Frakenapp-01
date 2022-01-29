@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+# I'm using Notepad++ to edit md files & .gitignore and it creates backup files, 
+# I don't want them in the repo.
+*.md.bak
+.gitignore.bak
