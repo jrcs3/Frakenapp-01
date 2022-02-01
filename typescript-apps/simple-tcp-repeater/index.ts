@@ -1,3 +1,9 @@
+// # ip address for the socket
+const HOST = 'localhost'; 
+// # port number for the socket
+const PORT = 3001; 
+
+
 var net = require('net');
 
 type SocketType = { 
@@ -24,6 +30,6 @@ var server = net.createServer(function(socket: SocketType){
     });
 });
 
-server.listen(3001, 'localhost', function(){
-    console.log("listening on 3001");
+server.listen(PORT, HOST, function(){
+    console.log("listening on " + PORT);
 });

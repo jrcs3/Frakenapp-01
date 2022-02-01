@@ -1,8 +1,6 @@
 // # ip address for the socket
-// TCP Server Simulator should be on this computer
 const HOST = 'localhost'; 
 // # port number for the socket
-// TCP Server Simulator uses 3001 by default
 const PORT = 3001; 
 
 const {
