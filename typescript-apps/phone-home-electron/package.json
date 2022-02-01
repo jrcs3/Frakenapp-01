@@ -1,0 +1,6 @@
+{
+    "name": "phone-home-electron",
+    "version": "0.0.1",
+    "license": "MIT",
+    "main": "main.js"
+  }
