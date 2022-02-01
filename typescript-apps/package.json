@@ -6,20 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --build ./simple-tcp-repeater/tsconfig.json && tsc -build ./phone-home-electron/tsconfig.json",
-    "client": "electron ./phone-home-electron/.",
     "server": "node simple-tcp-repeater/index.js",
+    "client": "electron ./phone-home-electron/.",
     "start": "npm run build && concurrently --kill-others \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jrcs3/Resume-Builder-Experiment-01.git"
+    "url": "git+https://github.com/jrcs3/Frakenapp-01.git"
   },
   "author": "Jack Stephens",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jrcs3/Resume-Builder-Experiment-01/issues"
+    "url": "https://github.com/jrcs3/Frakenapp-01/issues"
   },
-  "homepage": "https://github.com/jrcs3/Resume-Builder-Experiment-01#readme",
+  "homepage": "https://github.com/jrcs3/Frakenapp-01#readme",
   "devDependencies": {
     "@types/node": "^17.0.13",
     "concurrently": "^7.0.0",

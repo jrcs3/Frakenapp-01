@@ -1,35 +1,42 @@
 // # ip address for the socket
-const HOST = 'localhost'; 
+const HOST: string = 'localhost'; 
 // # port number for the socket
-const PORT = 3001; 
+const PORT: number = 3001; 
 
 
-var net = require('net');
-
+// TypeScript types (just for fun)
+type ServerType = {
+    listen: (port: number, host: string, callback: { (): void; }) => void; 
+};
 type SocketType = { 
     setKeepAlive: (enable: boolean, initialDelay: number) => void; 
     on: (event: string, callback: { (dataBuffer: ArrayBuffer): void; }) => void; 
     write: (data: string) => void; 
 };
+type NetType = {
+    createServer: (callback: { (socket: SocketType): void; }) => ServerType; 
+};
 
-var server = net.createServer(function(socket: SocketType){
+const net: NetType = require('net');
+
+const server: ServerType = net.createServer(function(socket: SocketType) {
+    // Phone Home App can phone at any time
     socket.setKeepAlive(true, 60000);
 
+    // Listen for data 
     socket.on('data', function(dataBuffer: ArrayBuffer) {
-        const data = dataBuffer + '';
+        const data: string = dataBuffer + ''; // Change ArrayBuffer to string
         console.log(data);
+        // Later on,  I want to be able to kill off Phone Home App
         if (data.trim().toLocaleLowerCase() === 'bye'){
             socket.write('hangup');
         }
-        else{
+        else {
             socket.write('You said "' + data + '"');
         }
     });
-    socket.on('end', function(dataBuffer: ArrayBuffer){
-        
-    });
 });
 
-server.listen(PORT, HOST, function(){
+server.listen(PORT, HOST, function() {
     console.log("listening on " + PORT);
 });
