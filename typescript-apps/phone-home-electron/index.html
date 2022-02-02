@@ -26,7 +26,8 @@
 <body>
     <h1>Phone Home App</h1>
     <script>
-        $(document).ready(function () {
+        //$(document).ready(function () {
+        document.addEventListener('DOMContentLoaded', function () {
             // Inter Process Communication module for the renderer process
             const ipcRenderer = require('electron').ipcRenderer;
 
@@ -38,11 +39,16 @@
             // Sends data back to the main process
             // when the phoneHome button is clicked
             $("#phoneHome").click(function (event) {
-                ipcRenderer.send('phoneHome');
+                let messageValue = $("#messageText").val();
+                if (messageValue){
+                    ipcRenderer.send('phoneHome', messageValue);
+                    $("#messageText").val("");
+                }
             });
         });
     </script>
     <br />
+    <input type="text" id="messageText" name="messageText" value="" />
     <input type="button" id="phoneHome" value="Phone Home" />
     <br />
     <h2>Incoming Calls</h2>

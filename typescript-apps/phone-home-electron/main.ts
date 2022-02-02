@@ -59,8 +59,8 @@ client.on('data', function (data) {
 });
 
 // 3. relay data from mainWindow (the renderer process) to home.
-ipcMain.on('phoneHome', function (event) {
-    client.write('phoneHome');
+ipcMain.on('phoneHome', function (event, arg) {
+    client.write('' + arg);
 });
 
 // This method will be called when Electron has finished
