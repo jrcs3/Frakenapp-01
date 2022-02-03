@@ -28,6 +28,10 @@
     {
       "name": "Server/Client",
       "configurations": ["Server", "Client"]
+    },
+    {
+      "name": "Net Server/Client",
+      "configurations": [".NET Core Server", "Client"]
     }
   ]
 }

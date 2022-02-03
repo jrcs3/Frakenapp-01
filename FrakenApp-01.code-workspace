@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "typescript-apps"
+		},
+		{
+			"path": "dotnet-apps\\simple-tcp-repeater-net"
+		}
+	],
+	"settings": {}
+}
