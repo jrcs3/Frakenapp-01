@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 
 namespace simple_tcp_repeater_net
 {
@@ -28,11 +29,13 @@ namespace simple_tcp_repeater_net
                     int i;
                     while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {
-                        string data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+                        string data = Encoding.ASCII.GetString(bytes, 0, i);
                         Console.WriteLine(data);
                         if (data.ToLower().Trim() == "bye")
                         {
-                            byte[] hangup = System.Text.Encoding.ASCII.GetBytes("hangup");
+                            // New Feature, End the process after sending
+                            // terminal message to the client.
+                            byte[] hangup = Encoding.ASCII.GetBytes("hangup");
                             stream.Write(hangup);
                             continueLoop = false;
                             break;
@@ -40,7 +43,7 @@ namespace simple_tcp_repeater_net
                         else
                         {
                             data = $"You said \"{data}\"";
-                            byte[] message = System.Text.Encoding.ASCII.GetBytes(data);
+                            byte[] message = Encoding.ASCII.GetBytes(data);
                             stream.Write(message);
                         }
                     }

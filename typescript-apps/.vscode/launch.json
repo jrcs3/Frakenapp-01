@@ -29,6 +29,7 @@
       "name": "Server/Client",
       "configurations": ["Server", "Client"]
     },
+    // Cross project, ".NET Core Server" is on the other launch.json under simple-tcp-repeater-net
     {
       "name": "Net Server/Client",
       "configurations": [".NET Core Server", "Client"]
