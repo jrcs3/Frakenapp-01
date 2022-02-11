@@ -3,18 +3,19 @@ const HOST = 'localhost';
 // # port number for the socket
 const PORT = 3001; 
 
-const {
+import  {
     app,
     BrowserWindow,
     ipcMain         // Inter Process Communication module for the main process
-} = require('electron');
-const net = require('net');
+} from 'electron';
 
-const path = require('path');
+import net = require('net');
+
+import path = require('path');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
+let mainWindow : BrowserWindow;
 
 function createWindow() {
     // Create the browser window.
@@ -39,7 +40,7 @@ function createWindow() {
 };
 
 // 1. Create a connection with home
-const client = new net.Socket();
+const client : net.Socket = new net.Socket();
 client.connect(PORT, HOST, function () {
     console.log('CONNECTED TO: ' + HOST + ':' + PORT);
     // Write a message to the socket as soon as the client is connected, 
