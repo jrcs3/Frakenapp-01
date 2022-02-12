@@ -1,0 +1,50 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // Used to get Server, Main & Renderer to connect properly https://vscode-debug-specs.github.io/javascript_electron/
+    "version": "0.2.0",
+    "configurations": [
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "Debug Main Process",
+          "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+          "program": "${workspaceRoot}/index.js",
+          "runtimeArgs": [
+            ".",
+            // this args for attaching render process
+            "--remote-debugging-port=9222"
+          ],
+          "windows": {
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+          },
+          "protocol": "legacy"
+        },        
+        {
+          "type": "chrome",
+          "request": "attach",
+          "name": "Attach to Render Process",
+          "port": 9222,
+          "webRoot": "${workspaceRoot}/html"
+        }
+      ],
+    "compounds": [
+      {
+        "name": "Client",
+        "configurations": ["Debug Main Process", "Attach to Render Process"]
+      },
+      // Cross project, "Server" is on the other 
+      // launch.json under simple-tcp-repeater
+      {
+        "name": "Server/Client",
+        "configurations": ["Server", "Debug Main Process", "Attach to Render Process"]
+      },
+      // Cross project, ".NET Core Server" is on the other 
+      // launch.json under simple-tcp-repeater-net
+      {
+        "name": "Net Server/Client",
+        "configurations": [".NET Core Server", "Debug Main Process", "Attach to Render Process"]
+      }
+    ]
+}
