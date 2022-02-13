@@ -8,7 +8,7 @@
         {
           "type": "node",
           "request": "launch",
-          "name": "Debug Main Process",
+          "name": "Client: Debug Main Process",
           "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
           "program": "${workspaceRoot}/index.js",
           "runtimeArgs": [
@@ -24,7 +24,7 @@
         {
           "type": "chrome",
           "request": "attach",
-          "name": "Attach to Render Process",
+          "name": "Client: Attach to Render Process",
           "port": 9222,
           "webRoot": "${workspaceRoot}/html"
         }
@@ -32,19 +32,19 @@
     "compounds": [
       {
         "name": "Client",
-        "configurations": ["Debug Main Process", "Attach to Render Process"]
+        "configurations": ["Client: Debug Main Process", "Client: Attach to Render Process"]
       },
       // Cross project, "Server" is on the other 
       // launch.json under simple-tcp-repeater
-      {
-        "name": "Server/Client",
-        "configurations": ["Server", "Debug Main Process", "Attach to Render Process"]
-      },
+      //{
+      //  "name": "Server/Client",
+      //  "configurations": ["Server", "Client: Debug Main Process", "Client: Attach to Render Process"]
+      //},
       // Cross project, ".NET Core Server" is on the other 
       // launch.json under simple-tcp-repeater-net
-      {
-        "name": "Net Server/Client",
-        "configurations": [".NET Core Server", "Debug Main Process", "Attach to Render Process"]
-      }
+      //{
+      //  "name": "Net Server/Client",
+      //  "configurations": [".NET Core Server", "Client: Debug Main Process", "Client: Attach to Render Process"]
+      //}
     ]
 }

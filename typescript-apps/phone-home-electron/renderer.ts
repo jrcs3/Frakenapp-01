@@ -1,14 +1,5 @@
 
 async function main() {
-    /*const isDevelopment = require('electron-is-dev');
-
-    if (isDevelopment) {
-        // this is to give Chrome Debugger time to attach to the new window 
-        await new Promise(r => setTimeout(r, 1000));
-    }
-
-    debugger;
-    */
     
     document.addEventListener('DOMContentLoaded', function () {
         // Inter Process Communication module for the renderer process
