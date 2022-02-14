@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
+    "build-react": "webpack --mode development",
     "client": "electron .",
     "start": "npm run && npm client",
     "start:main": "cross-env NODE_ENV=development electron -r ts-node/register/transpile-only ./src/main/main.ts"
@@ -14,13 +15,24 @@
   "author": "Jack Stephens",
   "description": "",
   "devDependencies": {
+    "@babel/core": "^7.17.2",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
     "cross-env": "^7.0.3",
     "electron": "^16.0.8",
     "electron-is-dev": "^2.0.0",
     "ts-node": "^10.5.0",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "dependencies": "0.0.1"
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "dependencies": "0.0.1",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }
