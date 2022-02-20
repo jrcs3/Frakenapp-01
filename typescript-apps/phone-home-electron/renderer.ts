@@ -7,7 +7,7 @@ async function main() {
 
         // Recieves data from the main process   
         ipcRenderer.on('received-data', function (evt, message) {
-            const newElement: HTMLElement = document.createElement('p');
+            const newElement = document.createElement('p');
             newElement.textContent = message;
             document.getElementById("received-data-content").appendChild(newElement);
         });
@@ -15,8 +15,8 @@ async function main() {
         // Sends data back to the main process'ms
         // when the phoneHome button is clicked
         document.getElementById('phoneHome').addEventListener('click', function (event) {
-            const messagecontrol: HTMLInputElement = document.getElementById('messageText') as HTMLInputElement;
-            const messageValue: String = messagecontrol.value;
+            const messagecontrol = document.getElementById('messageText');
+            const messageValue = messagecontrol.value;
             if (messageValue) {
                 ipcRenderer.send('phoneHome', messageValue);
                 messagecontrol.value = "";

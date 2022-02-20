@@ -9,13 +9,13 @@ import  {
     ipcMain         // Inter Process Communication module for the main process
 } from 'electron';
 
-import net = require('net');
+const net = require('net');
 
-import path = require('path');
+const path = require('path');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow : BrowserWindow;
+let mainWindow;
 
 function createWindow() {
     // Create the browser window.
@@ -40,7 +40,7 @@ function createWindow() {
 };
 
 // 1. Create a connection with home
-const client : net.Socket = new net.Socket();
+const client = new net.Socket();
 client.connect(PORT, HOST, function () {
     console.log('CONNECTED TO: ' + HOST + ':' + PORT);
     // Write a message to the socket as soon as the client is connected, 
