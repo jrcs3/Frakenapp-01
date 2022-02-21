@@ -4,12 +4,11 @@
   "license": "MIT",
   "main": "main.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js --mode=development",
     "prod": "webpack --config webpack.config.js --mode=production",
     "client": "electron ./dist/main.js",
-    "start": "npm run && npm client",
-    "start:main": "cross-env NODE_ENV=development electron -r ts-node/register/transpile-only ./src/main/main.ts"
+    "start": "npm run build && npm run client",
+    "start:main": "cross-env NODE_ENV=development electron -r ts-node/register/transpile-only ./main.ts"
   },
   "keywords": [],
   "author": "Jack Stephens",

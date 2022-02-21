@@ -14,7 +14,10 @@
             "--remote-debugging-port=9222"
           ],
           "cwd": "${workspaceRoot}",
-          "program": "${workspaceRoot}/dist/main.js" //,
+          "program": "${workspaceRoot}/dist/main.js",
+          "timeout": 20000,
+          "sourceMaps": true,
+          "preLaunchTask": "build"    
         },        
         {
           "name": "Client: Attach to Render Process",

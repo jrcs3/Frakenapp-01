@@ -10,7 +10,6 @@ const {
 } = require('electron');
 
 const net = require('net');
-// const path = require('path');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -24,8 +23,7 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      devTools: true// ,
-      // preload: path.join(__dirname, 'preload.js')
+      devTools: true
     }
   });
   // and load the index.html of the app.
