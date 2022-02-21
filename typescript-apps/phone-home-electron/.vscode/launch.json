@@ -6,27 +6,22 @@
     "version": "0.2.0",
     "configurations": [
         {
+          "name": "Client: Debug Main Process",
           "type": "node",
           "request": "launch",
-          "name": "Client: Debug Main Process",
           "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
-          "program": "${workspaceRoot}/index.js",
           "runtimeArgs": [
-            ".",
-            // this args for attaching render process
             "--remote-debugging-port=9222"
           ],
-          "windows": {
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
-          },
-          "protocol": "legacy"
+          "cwd": "${workspaceRoot}",
+          "program": "${workspaceRoot}/dist/main.js" //,
         },        
         {
+          "name": "Client: Attach to Render Process",
           "type": "chrome",
           "request": "attach",
-          "name": "Client: Attach to Render Process",
           "port": 9222,
-          "webRoot": "${workspaceRoot}/html"
+          "webRoot": "${workspaceRoot}/dist/index.html"
         }
       ],
     "compounds": [

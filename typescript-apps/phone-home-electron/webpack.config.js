@@ -9,15 +9,6 @@ const commonConfig = {
     },
     module: {
         rules: [
-            /*{
-                test: /\.ts$/,
-                enforce: 'pre',
-                loader: 'tslint-loader',
-                options: {
-                    typeCheck: true,
-                    emitErrors: true
-                }
-            },*/
             {
                 test: /\.tsx$/,
                 loader: 'ts-loader'
