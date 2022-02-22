@@ -2,15 +2,15 @@
 	"folders": [
 		{
 			"name": "phone-home-electron",
-			"path": "typescript-apps\\phone-home-electron"
+			"path": "typescript-apps/phone-home-electron"
 		},
 		{
 			"name": "simple-tcp-repeater",
-			"path": "typescript-apps\\simple-tcp-repeater"
+			"path": "typescript-apps/simple-tcp-repeater"
 		},
 		{
 			"name": "simple-tcp-repeater-net",
-			"path": "dotnet-apps\\simple-tcp-repeater-net"
+			"path": "dotnet-apps/simple-tcp-repeater-net"
 		}
 	],
 	"settings": {}
