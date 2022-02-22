@@ -5,10 +5,8 @@
   "main": "main.ts",
   "scripts": {
     "build": "webpack --config webpack.config.js --mode=development",
-    "prod": "webpack --config webpack.config.js --mode=production",
     "client": "electron ./dist/main.js",
-    "start": "npm run build && npm run client",
-    "start:main": "cross-env NODE_ENV=development electron -r ts-node/register/transpile-only ./main.ts"
+    "start": "npm run build && npm run client"
   },
   "keywords": [],
   "author": "Jack Stephens",

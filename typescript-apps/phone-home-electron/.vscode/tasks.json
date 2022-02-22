@@ -12,15 +12,6 @@
         "build"
       ],
       "problemMatcher": []
-    },
-    {
-      "label": "prod",
-      "type": "shell",
-      "args": [
-        "run",
-        "prod"
-      ],
-      "problemMatcher": []
-     }
+    }
   ]
 }
