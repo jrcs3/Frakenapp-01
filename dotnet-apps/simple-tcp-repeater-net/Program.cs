@@ -37,8 +37,8 @@ namespace simple_tcp_repeater_net
                             // terminal message to the client.
                             byte[] hangup = Encoding.ASCII.GetBytes("hangup");
                             stream.Write(hangup);
-                            continueLoop = false;
-                            break;
+                            //continueLoop = false;
+                            //break;
                         }
                         else
                         {
