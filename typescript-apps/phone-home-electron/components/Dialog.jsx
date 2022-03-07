@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 const ipcRenderer = require('electron').ipcRenderer;
 
-class  Dialog extends Component {
+class Dialog extends Component {
   constructor(props) {
     super(props);
     this.state = {message: "", returnedMessages: [], maxMessageId: 0};
@@ -31,17 +31,21 @@ class  Dialog extends Component {
   // This logic is used in 2 places
   SendMessage (messageValue) {
     if (messageValue) {
-      console.log(messageValue);
+      // Send the message home, the Main process will send it on
       ipcRenderer.send('phoneHome', messageValue);
       // This does not survive the closure
-      const that = this;
+      const myComponent = this;
+      // Get the response back from the Main process
+      // once recieves a single message, it is like a one time on(). 
       ipcRenderer.once('received-data', function (evt, message) {
-        const id = that.state.maxMessageId + 1;
-        const newMessages = [...that.state.returnedMessages, 
+        // Add this item to returnedMessages, React will rerender the UI
+        const id = myComponent.state.maxMessageId + 1;
+        const newMessages = [...myComponent.state.returnedMessages, 
           {id, content: message}];
-        that.setState({returnedMessages: newMessages});
-        that.setState({maxMessageId: id});
-        that.setState({message: ""});
+        myComponent.setState({returnedMessages: newMessages});
+        myComponent.setState({maxMessageId: id});
+        // Clear the phoneHome textBox
+        myComponent.setState({message: ""});
       });  
     }
   }
