@@ -3,6 +3,8 @@ const HOST = 'localhost';
 // # port number for the socket
 const PORT = 3001;
 
+const { ConnectionBuilder } = require("electron-cgi");
+
 const {
   app,
   BrowserWindow,
@@ -14,6 +16,8 @@ const net = require('net');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
+let client;
+
 
 function createWindow () {
   // Create the browser window.
@@ -37,30 +41,31 @@ function createWindow () {
 }
 
 // 1. Create a connection with home
-const client = new net.Socket();
-client.connect(PORT, HOST, function () {
-  console.log('CONNECTED TO: ' + HOST + ':' + PORT);
-  // Write a message to the socket as soon as the client is connected,
-  // the server will receive it as message from the client
-  client.write('Line Opened');
-});
+//const client = new net.Socket();
+//client.connect(PORT, HOST, function () {
+  client = new ConnectionBuilder()
+  .connectTo("dotnet", "run", "--project", "../../dotnet-apps/electron-cgi/electron-cgi.csproj")
+  //.connectTo("../../dotnet-apps/electron-cgi/bin/Debug/net5.0/electron-cgi.exe")
+  .build();  
 
 // 2. Listen for data from home and send it to mainWindow (the renderer process),
-client.on('data', function (data) {
+//client.on('data', function (data) {
+function GetData(err: any, data: String) {
   console.log('DATA: ' + data);
   mainWindow.webContents.send('received-data', '' + data);
   // Prove that I can close the app from outside
   if ('' + data === 'hangup') {
     console.log('bye');
+    client.close();
     app.quit();
   }
-});
+}
 
 // 3. relay data from mainWindow (the renderer process) to home.
 ipcMain.on('phoneHome', function (event, arg) {
-  client.write('' + arg);
+  //client.write('' + arg);
+  client.send('message', '' + arg, GetData);
 });
-
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -82,3 +87,7 @@ app.on('activate', function () {
     createWindow();
   }
 });
+
+client.onDisconnect = () => {
+  console.log("lost");
+};

@@ -11,6 +11,9 @@
 		{
 			"name": "simple-tcp-repeater-net",
 			"path": "dotnet-apps/simple-tcp-repeater-net"
+		},
+		{
+			"path": "dotnet-apps/electron-cgi"
 		}
 	],
 	"settings": {}
