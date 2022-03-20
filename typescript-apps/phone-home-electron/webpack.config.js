@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+//const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const commonConfig = {
   output: {
@@ -41,7 +41,7 @@ module.exports = [
     target: 'electron-renderer',
     entry: {renderer: './renderer.ts'},
     plugins: [
-      new FriendlyErrorsWebpackPlugin(),
+      //new FriendlyErrorsWebpackPlugin(),
       // 3. The HTML file 
       // (I converted the old html file to ejs 
       // so Webpack would build here)
